@@ -1,0 +1,28 @@
+# Test Matrix — Praktikum Pertemuan 9
+## Aplikasi: KursusKu Laravel (Laravel Layout, Bootstrap, jQuery Ajax & Form)
+
+Pengujian dilakukan langsung pada sistem lokal menggunakan environment Laragon (Apache, PHP 8.3.33) dan Vite (Bootstrap 5.3.9, Popper 2.11.8, jQuery 4.1.0).
+
+---
+
+| No | Skenario Pengujian | Expected Result | Actual Result | Status | Catatan |
+|---|---|---|---|---|---|
+| 1 | **Home Page Rendering**<br>Buka URL `http://kursusku-laravel.test/` | Layout utama tampil lengkap, navbar master terpasang, Bootstrap aktif, dan identitas warna Warm Brown & White dipertahankan sesuai Pertemuan 7. | Halaman beranda berhasil dirender menggunakan master layout `@extends('layouts.app')`. Hero image, katalog kursus, keunggulan, dan alur belajar tampil presisi dengan palet cokelat-putih. | **PASS** | Diuji via request HTTP GET status 200 dan verifikasi struktur DOM. |
+| 2 | **Navbar Responsive (Mobile)**<br>Perkecil ukuran viewport layar browser (< 992px) | Menu navigasi menciut (*collapse*), tombol toggle hamburger muncul, dan saat diklik menu navigasi dapat dibuka/ditutup secara interaktif. | Tombol hamburger (`navbar-toggler`) muncul pada mobile viewport, terhubung dengan target `#navbarKursusKu` melalui Bootstrap JavaScript tanpa error. | **PASS** | Atribut `data-bs-toggle="collapse"` berfungsi via Bootstrap JS yang dibundle melalui Vite. |
+| 3 | **Form Page Navigation**<br>Akses URL `http://kursusku-laravel.test/pendaftaran` melalui navbar atau tombol CTA | Halaman pendaftaran tampil dengan struktur visual identik (master layout yang sama) dan form pendaftaran siap diisi. | Form pendaftaran tampil elegan di dalam card (`card-kursusku`) dengan input nama, email, dropdown kursus, kotak availability, dan tombol navigasi. | **PASS** | HTTP GET status 200, active nav state berpindah ke tombol/menu Pendaftaran. |
+| 4 | **Select Kosong (Initial State)**<br>Pilihan kursus pada posisi default (`-- Pilih Kursus --`) | Area status availability menampilkan pesan panduan default berlatar netral: *"Pilih kursus untuk melihat sisa kursi."* | Kotak `#availability` memiliki kelas `alert alert-secondary` dan menampilkan teks panduan awal default. | **PASS** | State awal terverifikasi pada HTML markup dan event listener jQuery `app.js`. |
+| 5 | **Availability: Web Dasar**<br>Pilih dropdown kursus opsi "Web Dasar" (ID: 1) | Melakukan request Ajax GET ke `/courses/1/availability`, mengembalikan JSON, dan menampilkan teks hijau: *"12 kursi tersisa untuk Web Dasar."* tanpa reload halaman. | Endpoint mengembalikan `{"course":"Web Dasar","remaining":12}` (HTTP 200). jQuery mengupdate `#availability` menjadi `alert-success` dengan teks *"12 kursi tersisa untuk Web Dasar."* | **PASS** | Diuji langsung pada endpoint JSON dan handler Ajax sukses. |
+| 6 | **Availability: PHP Dasar**<br>Pilih dropdown kursus opsi "PHP Dasar" (ID: 2) | Melakukan request Ajax GET ke `/courses/2/availability`, mengembalikan JSON, dan menampilkan teks hijau: *"8 kursi tersisa untuk PHP Dasar."* | Endpoint mengembalikan `{"course":"PHP Dasar","remaining":8}` (HTTP 200). Status box diperbarui secara dinamis tanpa reload halaman. | **PASS** | Verifikasi response JSON valid via request curl dan browser. |
+| 7 | **Availability: Laravel Dasar**<br>Pilih dropdown kursus opsi "Laravel Dasar" (ID: 3) | Melakukan request Ajax GET ke `/courses/3/availability`, mengembalikan JSON, dan menampilkan teks hijau: *"4 kursi tersisa untuk Laravel Dasar."* | Endpoint mengembalikan `{"course":"Laravel Dasar","remaining":4}` (HTTP 200). Teks status terpasang tepat sesuai data. | **PASS** | Request GET asynchronous berjalan mulus tanpa page reload. |
+| 8 | **Valid Form POST Submission**<br>Isi nama valid (>= 3 karakter), email valid, kursus valid, lalu klik "Kirim Pendaftaran" | Form lolos validasi Laravel, redirect kembali (`back()`), dan memunculkan flash message sukses: *"Form lolos validasi. Database akan ditambahkan pada pertemuan berikutnya."* Input tetap dipertahankan via `old()`. | Request POST ke `/pendaftaran/preview` memvalidasi input dengan benar, mengembalikan redirect back dengan status session success dan input terisi ulang. | **PASS** | Diuji via simulasi session POST dengan CSRF token valid. |
+| 9 | **Invalid Email Validation**<br>Isi form dengan format email tidak valid (contoh: `bukan-email`) lalu submit | Validasi server-side Laravel menolak request, mengembalikan redirect dengan pesan error validasi spesifik untuk field email, dan form mempertahankan nilai yang sudah diisi sebelumnya. | Server merespon dengan redirection kembali ke form dan menampilkan kotak `alert alert-danger` berisi daftar kesalahan serta visualisasi error field Bootstrap (`is-invalid`). | **PASS** | Validasi Laravel `$request->validate()` bekerja sesuai aturan tanpa menyimpan data. |
+| 10 | **Network Inspection & Asynchronous Behavior**<br>Buka Inspect Element → Network tab → filter Fetch/XHR saat memilih kursus | Terdeteksi request GET ke endpoint `/courses/{id}/availability`, status code 200 OK, response Content-Type `application/json`, payload JSON sesuai, dan halaman tidak melakukan reload. | Request asynchronous tercatat pada network monitor dengan status HTTP 200, response JSON bersih, header `Content-Type: application/json`, dan perubahan DOM berlangsung instan. | **PASS** | Tidak ada JavaScript runtime error pada konsol browser. |
+
+---
+
+### Ringkasan Hasil Pengujian
+- **Total Skenario**: 10
+- **Lolos (PASS)**: 10
+- **Gagal (FAIL)**: 0
+- **Belum Diuji (NOT TESTED)**: 0
+- **Kesimpulan**: Seluruh fungsionalitas Blade Layout, Bootstrap, jQuery Ajax, dan Form Validation Pertemuan 9 telah teruji dan berfungsi sesuai spesifikasi teknis.

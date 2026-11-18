@@ -1,0 +1,568 @@
+/* ============================================================
+   KURSUSKU STYLESHEET
+   Tema: Warm Brown & White
+   Palet Warna:
+   - Dark Chocolate : #49352B
+   - Primary Brown  : #795548
+   - Medium Brown   : #A07858
+   - Warm Beige     : #E9DFD3
+   - Off White      : #FAF8F5
+   - Pure White     : #FFFFFF
+   - Text Dark      : #302720
+   ============================================================ */
+
+:root {
+    --color-dark-chocolate: #49352B;
+    --color-primary-brown: #795548;
+    --color-medium-brown: #A07858;
+    --color-warm-beige: #E9DFD3;
+    --color-off-white: #FAF8F5;
+    --color-pure-white: #FFFFFF;
+    --color-text-dark: #302720;
+    --color-text-muted: #64564c;
+    --color-border: #E0D5C7;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --container-max-width: 1140px;
+    --transition-speed: 0.25s;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.65;
+    color: var(--color-text-dark);
+    background-color: var(--color-off-white);
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-primary-brown);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--color-dark-chocolate);
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header & Navigation */
+.site-header {
+    background-color: var(--color-pure-white);
+    border-bottom: 1px solid var(--color-warm-beige);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-dark-chocolate);
+    letter-spacing: -0.02em;
+}
+
+.brand-badge {
+    background-color: var(--color-primary-brown);
+    color: var(--color-pure-white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.75rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-primary-brown);
+    border-bottom-color: var(--color-primary-brown);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-primary-brown);
+    color: var(--color-pure-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-dark-chocolate);
+    color: var(--color-pure-white);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-primary-brown);
+    border-color: var(--color-primary-brown);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-warm-beige);
+    color: var(--color-dark-chocolate);
+}
+
+.btn-sm {
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Hero Section (2 Kolom Desktop, 1 Kolom Mobile) */
+.hero-section {
+    padding: 4.5rem 0;
+    background-color: var(--color-pure-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-tagline {
+    display: inline-block;
+    background-color: var(--color-warm-beige);
+    color: var(--color-dark-chocolate);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    line-height: 1.2;
+    color: var(--color-dark-chocolate);
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--color-warm-beige);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 25px rgba(73, 53, 43, 0.08);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Section Common Styling */
+.section-padding {
+    padding: 4.5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem auto;
+}
+
+.section-label {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-medium-brown);
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--color-dark-chocolate);
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+}
+
+/* Features / Keunggulan */
+.features-section {
+    background-color: var(--color-off-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: var(--color-pure-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem 1.75rem;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(73, 53, 43, 0.07);
+}
+
+.feature-icon-box {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-warm-beige);
+    color: var(--color-dark-chocolate);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    color: var(--color-dark-chocolate);
+    font-weight: 600;
+    margin-bottom: 0.65rem;
+}
+
+.feature-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* Catalog / Courses Section (3 Kolom Desktop, 1 Kolom Mobile) */
+.courses-section {
+    background-color: var(--color-pure-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.course-card {
+    background-color: var(--color-pure-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-medium-brown);
+    box-shadow: 0 14px 28px rgba(73, 53, 43, 0.08);
+}
+
+.course-card-top {
+    margin-bottom: 1.5rem;
+}
+
+.course-code-badge {
+    display: inline-block;
+    background-color: var(--color-warm-beige);
+    color: var(--color-dark-chocolate);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+}
+
+.course-title {
+    font-size: 1.3rem;
+    color: var(--color-dark-chocolate);
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+}
+
+.course-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+}
+
+.course-card-footer {
+    border-top: 1px solid var(--color-warm-beige);
+    padding-top: 1.25rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-meta {
+    font-size: 0.85rem;
+    color: var(--color-medium-brown);
+    font-weight: 600;
+}
+
+/* Learning Steps */
+.steps-section {
+    background-color: var(--color-off-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.step-card {
+    background-color: var(--color-pure-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color-primary-brown);
+    color: var(--color-pure-white);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.step-title {
+    font-size: 1.05rem;
+    color: var(--color-dark-chocolate);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.step-description {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+}
+
+/* Contact / Information Section */
+.info-section {
+    background-color: var(--color-pure-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.info-box {
+    background-color: var(--color-off-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.info-box h3 {
+    font-size: 1.5rem;
+    color: var(--color-dark-chocolate);
+    margin-bottom: 0.75rem;
+}
+
+.info-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.info-contact {
+    display: inline-flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-weight: 600;
+    color: var(--color-dark-chocolate);
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--color-pure-white);
+    padding: 2.5rem 0;
+    text-align: center;
+    border-top: 1px solid var(--color-warm-beige);
+}
+
+.footer-content {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (Media Queries)
+   Desktop: 2 kolom hero, 3 kolom courses, 4 kolom steps
+   Mobile / Tablet: 1 kolom
+   ============================================================ */
+
+@media (max-width: 992px) {
+    .hero-grid {
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hero: 1 kolom pada mobile */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .hero-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 1.95rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    /* Course Grid: 1 kolom pada mobile */
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Features Grid: 1 kolom pada mobile */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Steps Grid: 1 kolom pada mobile */
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .section-title {
+        font-size: 1.65rem;
+    }
+}
