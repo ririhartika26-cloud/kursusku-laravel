@@ -5,17 +5,41 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::latest()->get();
+        $q = trim((string) $request->query('q', ''));
+        $rawStatus = $request->query('status');
+        $allowedStatuses = ['open', 'closed', 'draft'];
+        $status = in_array($rawStatus, $allowedStatuses, true) ? $rawStatus : null;
 
-        return view('courses.index', compact('courses'));
+        $query = Course::query();
+
+        if ($q !== '') {
+            $query->where(function ($subQuery) use ($q) {
+                $subQuery->where('code', 'like', "%{$q}%")
+                    ->orWhere('name', 'like', "%{$q}%");
+            });
+        }
+
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        $courses = $query->latest()->paginate(10)->withQueryString();
+
+        if ($request->ajax()) {
+            return view('courses._table', compact('courses', 'q', 'status'));
+        }
+
+        return view('courses.index', compact('courses', 'q', 'status'));
     }
 
     /**
@@ -23,6 +47,8 @@ class CourseController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Course::class);
+
         return view('courses.create');
     }
 
@@ -31,6 +57,8 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
+        Gate::authorize('create', Course::class);
+
         Course::create($request->validated());
 
         return to_route('courses.index')
@@ -50,6 +78,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        Gate::authorize('update', $course);
+
         return view('courses.edit', compact('course'));
     }
 
@@ -58,6 +88,8 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
+        Gate::authorize('update', $course);
+
         $course->update($request->validated());
 
         return to_route('courses.show', $course)
@@ -69,6 +101,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        Gate::authorize('delete', $course);
+
         $course->delete();
 
         return to_route('courses.index')

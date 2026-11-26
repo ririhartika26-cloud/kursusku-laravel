@@ -9,7 +9,7 @@ class UpdateCourseRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return (bool) $this->user()?->isAdmin();
     }
 
     public function rules(): array

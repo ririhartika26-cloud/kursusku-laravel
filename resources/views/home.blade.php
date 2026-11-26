@@ -26,6 +26,38 @@
         </div>
     </section>
 
+    <!-- Ringkasan Statistik Platform (Dashboard Count) -->
+    <section class="py-4" style="background-color: var(--color-pure-white); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+        <div class="container">
+            <div class="row g-3 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-off-white); border: 1px solid var(--color-border);">
+                        <div class="h3 fw-bold mb-1" style="color: var(--color-dark-chocolate);">{{ $stats['totalCourses'] ?? 0 }}</div>
+                        <div class="small text-muted fw-semibold">Total Course</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-off-white); border: 1px solid var(--color-border);">
+                        <div class="h3 fw-bold mb-1" style="color: #1E5E2A;">{{ $stats['openCourses'] ?? 0 }}</div>
+                        <div class="small text-muted fw-semibold">Open Course</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-off-white); border: 1px solid var(--color-border);">
+                        <div class="h3 fw-bold mb-1" style="color: var(--color-primary-brown);">{{ $stats['totalParticipants'] ?? 0 }}</div>
+                        <div class="small text-muted fw-semibold">Total Participant</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-off-white); border: 1px solid var(--color-border);">
+                        <div class="h3 fw-bold mb-1" style="color: var(--color-medium-brown);">{{ $stats['totalEnrollments'] ?? 0 }}</div>
+                        <div class="small text-muted fw-semibold">Total Enrollment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Keunggulan Section -->
     <section id="keunggulan" class="section-padding features-section">
         <div class="container">

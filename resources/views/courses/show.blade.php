@@ -68,11 +68,13 @@
                         <a href="{{ route('courses.index') }}" class="btn btn-outline-kursusku">
                             &larr; Kembali ke Daftar
                         </a>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('courses.edit', $course) }}" class="btn btn-kursusku-primary">
-                                Edit Kursus
-                            </a>
-                        </div>
+                        @if (auth()->check() && auth()->user()->isAdmin())
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('courses.edit', $course) }}" class="btn btn-kursusku-primary">
+                                    Edit Kursus
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

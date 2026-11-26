@@ -572,3 +572,34 @@ a:hover {
         font-size: 1.65rem;
     }
 }
+
+/* Custom Pagination (Warm Brown Theme) */
+.kursusku-pagination .pagination {
+    margin-bottom: 0;
+    gap: 0.25rem;
+}
+
+.kursusku-pagination .page-link {
+    color: var(--color-dark-chocolate);
+    border-color: var(--color-border);
+    background-color: var(--color-pure-white);
+    border-radius: 6px;
+}
+
+.kursusku-pagination .page-link:hover {
+    color: var(--color-dark-chocolate);
+    background-color: var(--color-warm-beige);
+    border-color: var(--color-medium-brown);
+}
+
+.kursusku-pagination .page-item.active .page-link {
+    background-color: var(--color-primary-brown);
+    border-color: var(--color-primary-brown);
+    color: var(--color-pure-white);
+}
+
+.kursusku-pagination .page-item.disabled .page-link {
+    color: var(--color-text-muted);
+    background-color: var(--color-off-white);
+    border-color: var(--color-border);
+}
